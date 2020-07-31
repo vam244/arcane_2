@@ -1,0 +1,19 @@
+{% extends 'base.html'%} {% load static %} {% block content %}
+
+<head>
+  {% block title %}
+  <title>Bad Link 😞</title>
+  {% endblock %}
+  <link rel="stylesheet" href="{% static 'quiz/quiz.css'%}" />
+</head>
+
+<div class="content">
+  <p class="stage1">
+    Looks like you followed a bad link
+
+    <br />
+
+    Page Not Found !!!
+  </p>
+</div>
+{% endblock %}

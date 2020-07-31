@@ -1,0 +1,64 @@
+{%extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'user/forms1.css' %}" />
+<head>
+  {% block title %}
+  <title>Contact Info 📇</title>
+  {% endblock %}
+</head>
+<div class="content">
+  <br /><br />
+
+  <div class="box">
+    <h3>
+      Your current Profile details :
+    </h3>
+    <br />
+    <p>
+      Name : {{details.full_name}}
+    </p>
+    <br />
+    <p>
+      College : {{details.college}}
+    </p>
+    <br />
+    <p>
+      Year : {{details.year}}
+    </p>
+    <br />
+    <p>
+      Contact Number : {{details.contact}}
+    </p>
+  </div>
+
+  <div class="submit">
+    <a href="{% url 'user:details'%}">
+      <button value="Update Contact" class="btn btn-primary mb1 bg-blue">
+        Update Profile
+      </button>
+    </a>
+  </div>
+  <div class="submit">
+    <a href="{% url 'user:dashboard'%}">
+      <button
+        value="Update Contact"
+        class="btn btn-primary mb1 bg-blue"
+        style="font-size: medium;"
+      >
+        Proceed to Dashboard
+      </button>
+    </a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS.load(
+    "particles-js",
+    "{% static 'home/home.json' %}",
+    function () {
+      console.log("Hello Qriosity Player !!!");
+    }
+  );
+</script>
+{% endblock %}
