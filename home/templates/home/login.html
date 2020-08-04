@@ -1,11 +1,6 @@
 {% extends 'base.html' %}{% load static %}{% block content %}
-<head>
-  {% block title %}
-  <title>Please Login 😃</title>
-  {% endblock %}
-</head>
-<link rel="stylesheet" href="{% static 'home/login.css' %}" />
-
+<link rel="stylesheet" href="{% static 'home/login2.css' %}" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <div class="content">
   <div class="box">
     <h3 class="loginh">
@@ -14,11 +9,10 @@
     <br />
     <div class="icon3">
       <a href="{% url 'social:begin' 'facebook' %}">
-        <img src="{% static 'home/fb3.jpg'%}" alt="Login with Facebook" />
+        <font class="login-medium"><i class="fab fa-facebook"></i> <span>login using facebook</span></font>
       </a>
-      <br /><br />
       <a href="{% url 'social:begin' 'google-oauth2' %}">
-        <img src="{% static 'home/google.jpg'%}" alt="Login with Google" />
+        <font class="login-medium"><i class="fab fa-google-plus"></i> <span>login using google</span></font>
       </a>
     </div>
   </div>
