@@ -180,6 +180,12 @@ footer img {
   cursor: pointer;
 }
 
+input{
+    padding: 0.5rem;
+    border-radius: 1em;
+    background: #232323;
+}
+
 @media screen and (max-width: 480px) {
   header nav {
     font-size: 10px;
