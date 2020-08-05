@@ -5,7 +5,7 @@
   <title>Fill up !!</title>
   {% endblock %}
 </head>
-<div class="content">
+<div class="content usercontactblock">
   <form action="{% url 'user:formdata' %}" method="POST">
     <h2 align="center">
       Fill your details
@@ -13,7 +13,7 @@
 
     {% csrf_token %} {{ form.as_p }}
 
-    <button type="submit" class="btn btn-primary mb1 bg-blue">
+    <button type="submit" class="btn">
       Submit
     </button>
     <br />
