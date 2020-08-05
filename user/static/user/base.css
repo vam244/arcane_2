@@ -172,7 +172,7 @@ footer img {
   text-transform: uppercase;
   color: white;
   border-color: #b77c31;
-  font-size: 1.3em;
+  font-size: 0.8em!important;
 }
 
 .btn:hover {
