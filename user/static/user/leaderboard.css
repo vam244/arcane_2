@@ -306,6 +306,16 @@ footer{
     .content .box .list .item{
         margin: 0.8rem auto;
     }
+    body{
+        height: unset;
+        overflow-y: unset;
+    }
+    .content .box{
+        height: unset !important;
+    }
+    footer{
+        background: #000 !important;
+    }
     #searchbox{
         width: 70%;
     }
