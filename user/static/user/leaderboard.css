@@ -16,6 +16,12 @@ body{
 
 
 
+@font-face {
+    font-family: "Electro Shackle";
+    src: url("Electro Shackle.otf");
+}
+
+
 .qriosity {
     font-family: "Electro Shackle";
 }
