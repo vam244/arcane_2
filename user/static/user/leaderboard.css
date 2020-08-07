@@ -141,8 +141,8 @@ h1 a:hover {
     border-radius: 1rem;
 }
 .content .topper .tpic {
-    height: 15vw;
-    width: 15vw;
+    height: 11vw;
+    width: 11vw;
     max-height: 40vh;
     max-width: 35vw;
     margin: 0 auto;
@@ -238,6 +238,7 @@ h1 a:hover {
     border: 1px solid rgba(217,146,54,0.5);
     padding: 0.3em 0.5em;
     width: 50%;
+    color: #fff;
 
 }
 
