@@ -89,3 +89,14 @@ pre {
   align-items: center;
   padding: 1em;
 }
+
+@media only screen and (min-width: 700px){
+    .content{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .blocks{
+        max-width: 48%;
+    }
+}
