@@ -1,121 +1,124 @@
 {% extends 'base.html'%} {% load static %} {% block content %}
 
 <head>
-  <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}" />
-  <style>
-    img {
-      max-height: 30vh;
-    }
+    <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}" />
+    <style>
+        img {
+            max-height: 30vh;
+        }
+        
+        .content {
+            justify-content: center;
+        }
+        
+        .questions {
+            display: flex;
+            flex-flow: row wrap;
+        }
+        .number{
+            color: #d29d28;
+        }
+        .number,
+        .title {
+            padding: 0.5em;
+        }
+        .title a:hover{
+            color: #9e9e9e;
+        }
 
-    .content {
-      justify-content: start;
-    }
+        .listQ{
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 0.3em;
+            margin: 0.5em;
+            max-width: 80vw;
+            border-radius: 1em;
+            margin-top: 1em;
+            box-shadow: 0px 2px 8px 2px #a26d28;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .display_box, .listQ{
+            max-width: 48%;
+        }
+        .stage2Q{
 
-    .questions {
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.2);
-      color: rgb(163, 151, 125);
-      border-radius: 1em;
-      margin: 10px;
-      padding: 1em;
-      display: flex;
-      flex-direction: column;
-    }
+        }
+        .coverQ{
+            flex: 33%;
 
-    .number,
-    .title {
-      padding: 0.5em;
-    }
+        }
+        @media only screen and (max-width: 900px){
+            .coverQ{
+                flex: 100%;
 
-    .propic {
-      height: 20vh;
-      width: 20vh;
-      border-radius: 100px;
-    }
-
-    .nosolved {
-      text-align: center;
-      color: #8e6023;
-      background-color: rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-
-    .stage1 {
-      max-width: 70vw;
-      font-size: 1em;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: rgb(163, 151, 125);
-    }
-
-    .stage1 a:hover {
-      color: #8e6023;
-    }
-  </style>
-  {% block title %}
-  <title>Stage 2 ⏳</title>
-  {% endblock %}
+            }
+            .display_box, .listQ{
+                max-width: 80%;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-size: 0.8em;
+            }
+        }
+        
+    </style>
 </head>
 
 <div class="content">
-  <br />
-  <div class="stage1">
-    <h4 align="center">
-      Congratulations {{player.name }} <br />
-      on reaching Stage 2 !!!
-    </h4>
     <br />
-    <img src="{{player.image}}" alt="{{ player.name }}" class="propic" />
-    <br />
-    <p align="center">
-      You have been excellent this far !! ✌
-      <br />
-      But there's more. Pick a question from below and get going ! 👍👍
-    </p>
-    <br />
+    <div class="display_box stage1">
+        <h4 align="center">
+            Congratulations {{player.name }} <br /> on reaching Stage 2!
+        </h4>
+        <br />
+        <img src="{{player.image}}" alt="{{ player.name }}" class="propic" />
+        <br />
+        <p align="center">
+        
+        </p>
 
-    <p align="center">
-      To view or answer a question click on its title
-      <br />
-      (You can always come back to this page)
-    </p>
-    <br />
-  </div>
+        <p align="center">
+            To view or answer a question click on its title
+            
+        </p>
+        <br />
+    </div>
 
-  <hr width="50%" color="#C98732" />
-  <br />
-  <h4 class="stage1">
-    Till Now you have solved
-    <br />
-    {{player.count2}} question{{ player.count2|pluralize}} in Stage 2
-  </h4>
-  <br />
-  {% for i in q %}
-  <div class="stage1">
-    <div class="number">
-      Question No. {{i.level}}
+    <div class="listQ">
+        <h4 class="display">
+            Till Now you have solved
+            <br /> {{player.count2}} question{{ player.count2|pluralize}} in Stage 2
+        </h4>
+        <div class="questions">
+             {% for i in q %}
+                <div class="coverQ">
+                    <div class="stage2Q">
+                        <div class="number">
+                            Question No. {{i.level}}
+                        </div>
+                        <div class="title">
+                            <a href="{% url 'quiz:individual' i.level %}">
+                                {{ i.title }}
+                            </a>
+                        </div>
+                        <!-- <div class="description">
+                      {{i.description}}
+                    </div> -->
+                        {% if i.image %}
+                            <div class="image">
+                                <img src="{{i.image}}" alt="{{i.title}}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if i.files%}
+                        <div class="files">
+                            <audio src="{{i.files.url}}" controls></audio>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="title">
-      <a href="{% url 'quiz:individual' i.level %}">
-        {{ i.title }}
-      </a>
-    </div>
-    <!-- <div class="description">
-      {{i.description}}
-    </div> -->
-    {% if i.image %}
-    <div class="image">
-      <img src="{{i.image}}" alt="{{i.title}}" />
-    </div>
-    {% endif %}
-  </div>
-  {% if i.files%}
-  <div class="files">
-    <audio src="{{i.files.url}}" controls></audio>
-  </div>
-  {% endif %} {% endfor %}
 </div>
 
 {% endblock %}
