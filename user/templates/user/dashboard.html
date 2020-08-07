@@ -19,11 +19,15 @@
       {{ player.name }}
     </div>
 
-    <div class="score" style="font-size: medium;">
-      Your Score : {{ player.score }}
-    </div>
-    <div class="rank" style="font-size: medium;">
-      Your rank : {{rank}}
+    <div class="det_container">
+            <div class="score" style="font-size: medium;">
+                <p>{{ player.score }}</p>
+                <p>Score</p>
+            </div>
+            <div class="rank" style="font-size: medium;">
+                <p>{{rank}}</p>
+                <p>rank</p>
+            </div>
     </div>
 
     <form action="{% url 'quiz:stageone' %}" method="POST">
