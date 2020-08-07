@@ -98,5 +98,6 @@ pre {
 
     .content .blocks{
         max-width: 48%;
+        padding: 1rem;
     }
 }
