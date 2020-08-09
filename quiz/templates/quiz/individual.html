@@ -8,23 +8,22 @@
 </head>
 <div class="content">
   <div class="stage1">
-    <h3>
-      Question No. {{question.level}}
-    </h3>
-    {% if value %}
-    <div class="wrong">
-      Wrong Answer &#10060;
-      <br />
-      Try Again <br />
-    </div>
-    {% endif %}
-    <h3>
-      <u>
-        {{ question.title }}
-      </u>
-    </h3>
+     <h3 style="font-size: 0.7em;">
+            Question No. {{question.level}}
+     </h3>
+     {% if value %}
+        <div class="wrong">
+            Wrong Answer
+            <br /> Try Again <br />
+        </div>
+     {% endif %}
+     <h3>
+            <u style="text-decoration: none; color: #d99236; font-size: 1.2em;">
+                {{ question.title }}
+            </u>
+     </h3>
 
-    <br />
+     <br />
     <!-- description -->
     {% if question.description %}
     <div>{{ question.description }}</div>
