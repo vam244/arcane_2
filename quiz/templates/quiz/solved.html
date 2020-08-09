@@ -1,22 +1,21 @@
 {% extends 'base.html'%} {% load static %} {% block content %}
 
 <head>
-  <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}" />
-  {% block title %}
-  <title>Solved ⏳</title>
-  {% endblock %}
+    <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}" />
+    {% block title %}
+        <title>solved</title>
+    {% endblock %}
 </head>
-<div class="content">
-  <p class="stage1">
-    Hurrah ! You have sucessfully solved
-    <br />
-    this Question.
-  </p>
-  <form action="{% url 'quiz:index'%}" method="POST">
-    {% csrf_token %}
-    <button class="btn btn-primary mb1 bg-blue" type="submit">
-      Back to Index Page
-    </button>
-  </form>
+<div class="content" >
+    <p class="stage1" style="padding: 1rem;">
+        <span style="font-size: 1.3em;">  Hurrah! <br>   You have sucessfully solved this Question.</span>
+        <br>
+        <button class="btn" style="margin-top: 1rem;">
+            <a  href="{% url 'quiz:index' %}" style="">
+                Back to Questions Page
+            </a>
+        </button>
+    </p>
+
 </div>
 {% endblock %}
