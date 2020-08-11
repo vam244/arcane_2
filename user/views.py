@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.contrib.auth.decorators import login_required
 from .import models
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from .forms import UserDetails
 # from django.contrib.auth.models import User
 

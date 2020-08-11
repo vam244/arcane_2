@@ -14,7 +14,7 @@ class Player(models.Model):
     last_submit = models.DateTimeField(
         default=datetime.utcnow()+timedelta(hours=5.5))
     question_level = models.IntegerField(default=1)
-    level2 = models.IntegerField(default=-1)
+    level2 = models.IntegerField(default=-2)
     count2 = models.IntegerField(default=0)
 
     def __str__(self):
