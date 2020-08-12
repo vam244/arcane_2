@@ -1,7 +1,17 @@
 {% extends 'base.html'%} {% load static %} {% block content %}
 <style>
+  h2 {
+    color: blanchedalmond;
+  }
   .container {
     background-color: black;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .listQ {
@@ -22,7 +32,17 @@
 </style>
 
 <div class="content">
+  {% if end %}
+  <p class="listQ">
+    Quiz Expired on {{end}}
+  </p>
+  {% else %}
+  <h2>
+    Quiz Live On
+  </h2>
+
   <p id="demo" class="listQ"></p>
+  {% endif %}
 </div>
 
 <script>
@@ -54,9 +74,9 @@
       clearInterval(x);
       document.getElementById("demo").innerHTML = "EXPIRED";
     }
+  });
 
-    console.log(days);
-  }, 1000);
+  console.log("Thanks For Participating");
 </script>
 
 {% endblock %}

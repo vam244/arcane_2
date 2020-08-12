@@ -33,12 +33,17 @@ def Algo(request):
 def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
     now = datetime.now()
-    quiz = datetime(2020, 8, 12, 14, 25, 0)       # Set the Date Time Here
+    quiz = datetime(2020, 8, 22, 10, 0, 0)       # Set the Date Time Here
+    end = datetime(2020, 8, 23, 10, 0, 0)
 
     print(now)
     if now < quiz:
-        print('not time ')
+        print('not time ' + str(quiz))
         return render(request, 'quiz/timer.html')
+
+    if (now > end):
+        print('end ' + str(end))
+        return render(request, 'quiz/timer.html', {"end": end})
 
     else:
         print('quiz on')
