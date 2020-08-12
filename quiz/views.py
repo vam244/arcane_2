@@ -15,6 +15,10 @@ hintButton = True
 question1 = Stage_1.objects.all()
 
 
+def Empty(request):
+    return render(request, 'quiz/timer.html')
+
+
 @login_required(login_url='/login', redirect_field_name=None)
 def Algo(request):
     if request.method == "POST":
