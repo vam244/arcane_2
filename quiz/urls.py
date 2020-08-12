@@ -5,7 +5,7 @@ app_name = 'quiz'
 
 
 urlpatterns = [
-    path('', views.Empty, name='stageone'),
+    path('', views.StageOne, name='stageone'),
     path('answer/', views.Stage1Answer, name="answer"),
     path('hint/', views.Stage1Hint, name="hint"),
     path('stage2/', views.Index, name="index"),
@@ -13,5 +13,3 @@ urlpatterns = [
     path('passcode/', views.Passcode, name="passcode"),
     path('algo/', views.Algo, name="algo"),
 ]
-
-#path('', views.StageOne, name='stageone'),
