@@ -1,7 +1,7 @@
 {% extends 'base.html'%} {% load static %} {% block content %}
 <style>
   h2 {
-    color: blanchedalmond;
+    color: #d99236;
   }
   .container {
     background-color: black;
@@ -14,37 +14,88 @@
     align-items: center;
   }
 
-  .listQ {
+  #countdownblock {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 1em;
     margin: 0.5em;
     max-width: 80vw;
     border-radius: 1em;
     margin-top: 1em;
-    box-shadow: 0px 2px 8px 2px #a26d28;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0px 2px 8px 2px #d99236;
     color: white;
-    text-align: center;
     font-size: 2em;
+    display: flex;
+    align-items: center;
     /* background-color: blanchedalmond; */
+  }
+  #countdownblock .cntdwn{
+    text-align: center;
+    padding: 1rem;
+
+  }
+  #countdownblock .cntdwn .text{
+    font-size: 0.5em;
+  }
+
+  .timeexp{
+    display: none !important;
+  }
+  #endinfo{
+    display: none;
+    padding: 0.5em;
+  }
+  .quizstatusdone{
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 1em;
+    margin: 0.5em;
+    max-width: 80vw;
+    border-radius: 1em;
+    margin-top: 1em;
+    box-shadow: 0px 2px 8px 2px #d99236;
+    color: white;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+  }
+  @media only screen and (max-width: 700px){
+    #countdownblock{
+      font-size: 1em;
+    }
+  }
+  @media only screen and (max-width: 300px){
+    #countdownblock{
+      font-size: 0.6em;
+    }
   }
 </style>
 
 <div class="content">
   {% if end %}
-  <p class="listQ">
+  <p class="quizstatusdone">
     Quiz Expired on {{end}}
   </p>
   {% else %}
-  <h2>
+  <h2 class="quizstatus">
     Quiz Live On
   </h2>
 
-  <p id="demo" class="listQ"></p>
+
+  <div id="countdownblock" class="">
+    
+    <div class="cntdwn"><p id="days"></p><p class="text">days</p></div>
+    <p>:</p>
+    <div class="cntdwn"><p id="hours"></p><p class="text">hours</p></div>
+    <p>:</p>
+    <div class="cntdwn"><p id="mins"></p><p class="text">minutes</p></div>
+    <p>:</p>
+    <div class="cntdwn"><p id="seconds"></p><p  class="text">seconds</p></div>
+  </div>
+  <button id="endinfo" class="btn"></button>
   {% endif %}
 </div>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   // Set the date we're counting down to
   var countDownDate = new Date("Aug 23, 2020 15:37:25").getTime();
@@ -65,18 +116,24 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Output the result in an element with id="demo"
-    document.getElementById("demo").innerHTML =
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-    // If the count down is over, write some text
+    document.getElementById("days").innerHTML = days
+    document.getElementById("hours").innerHTML = hours
+    document.getElementById("mins").innerHTML = minutes
+    document.getElementById("seconds").innerHTML = seconds
+
+
+    // If the count down is over, go back to home
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("demo").innerHTML = "EXPIRED";
+      document.getElementById("endinfo").innerHTML = "<p style='font-size: 0.4em'><a href='{% url 'home:home' %}'>Go back to home</a></p>";
+      document.getElementById("countdownblock").innerHTML  = "";
+      $("#countdownblock").addClass('timeexp');
+      $("#endinfo").css('display','block');
     }
   });
 
-  console.log("Thanks For Participating");
+
 </script>
 
 {% endblock %}
