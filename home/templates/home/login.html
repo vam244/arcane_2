@@ -1,6 +1,11 @@
 {% extends 'base.html' %}{% load static %}{% block content %}
 <link rel="stylesheet" href="{% static 'home/login.css' %}" />
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link
+  rel="stylesheet"
+  href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+  crossorigin="anonymous"
+/>
 <div class="content">
   <div class="box">
     <h3 class="loginh">
@@ -12,7 +17,10 @@
         <font class="login-medium"><i class="fab fa-facebook"></i> <span>login using facebook</span></font>
       </a>-->
       <a href="{% url 'social:begin' 'google-oauth2' %}">
-        <font class="login-medium"><i class="fab fa-google-plus"></i> <span>login using google</span></font>
+        <font class="login-medium"
+          ><i class="fab fa-google-plus"></i>
+          <span>login using google</span></font
+        >
       </a>
     </div>
   </div>

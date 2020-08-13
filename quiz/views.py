@@ -32,32 +32,51 @@ def Algo(request):
 @login_required(login_url='/login', redirect_field_name=None)
 def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
+    now = datetime.now()
+    quiz = datetime(2020, 8, 22, 10, 0, 0)       # Set the Date Time Here
+    end = datetime(2020, 8, 23, 10, 0, 0)
 
-    if player.level2 < 0:
-        player = get_object_or_404(Player, user=request.user)
-        question_level = player.question_level
+    print(now)
+    if now < quiz:
+        print('not time ' + str(quiz))
+        return render(request, 'quiz/timer.html')
 
-        if player.question_level > Stage_1.objects.count():
-            formp = UserAnswer
-            check = False
-            return render(request, 'quiz/end.html', {"form": formp, "check": check})
+    if (now > end):
+        print('end ' + str(end))
+        return render(request, 'quiz/timer.html', {"end": end})
 
-        question = get_object_or_404(Stage_1, level=int(question_level))
-        my_form = UserAnswer
-        hall = player.stageonehint_set.all()
-        for i in hall:
-            if i.level == question_level:
-                return render(request, 'quiz/Stage1.html', {"question": question, "form": my_form, "value": value, "hint": i.taken})
-        player.stageonehint_set.create(level=int(question_level), taken=False)
-        hint = player.stageonehint_set.get(level=int(question_level))
-        return render(request, 'quiz/Stage1.html', {"question": question, "form": my_form, "value": value, "hint": hint.taken})
-    if player.level2 > -1:
-        q = StageTwo.objects.all()
-        player = get_object_or_404(Player, user=request.user)
-        if (player.count2 < StageTwo.objects.count()):
-            return render(request, 'quiz/index.html', {"q": q, "player": player})
-        else:
-            return render(request, 'quiz/finish.html', {"player": player})
+    else:
+        print('quiz on')
+        if player.level2 < -1:
+            player = get_object_or_404(Player, user=request.user)
+            question_level = player.question_level
+
+            if player.question_level > Stage_1.objects.count():
+                formp = UserAnswer
+                check = False
+                return render(request, 'quiz/end.html', {"form": formp, "check": check})
+
+            question = get_object_or_404(Stage_1, level=int(question_level))
+            my_form = UserAnswer
+            hall = player.stageonehint_set.all()
+            for i in hall:
+                if i.level == question_level:
+                    return render(request, 'quiz/Stage1.html', {"question": question, "form": my_form, "value": value, "hint": i.taken})
+            player.stageonehint_set.create(
+                level=int(question_level), taken=False)
+            hint = player.stageonehint_set.get(level=int(question_level))
+            return render(request, 'quiz/Stage1.html', {"question": question, "form": my_form, "value": value, "hint": hint.taken})
+
+        if player.level2 == -1:
+            return render(request, 'quiz/wait.html')
+
+        if player.level2 > -1:
+            q = StageTwo.objects.all()
+            player = get_object_or_404(Player, user=request.user)
+            if (player.count2 < StageTwo.objects.count()):
+                return render(request, 'quiz/index.html', {"q": q, "player": player})
+            else:
+                return render(request, 'quiz/finish.html', {"player": player})
 
 
 @login_required(login_url='/login', redirect_field_name=None)
@@ -154,8 +173,10 @@ def Stage1Answer(request):
 def Index(request):
     q = StageTwo.objects.order_by('level')
     player = get_object_or_404(Player, user=request.user)
-    if(player.level2 < 0):
+    if(player.level2 < -1):
         return render(request, 'quiz/smart.html')
+    elif(player.level2 == -1):
+        return render(request, 'quiz/wait.html')
     else:
         if (player.count2 < StageTwo.objects.count()):
             return render(request, 'quiz/index.html', {"q": q, "player": player})
@@ -174,7 +195,7 @@ def Passcode(request):
 
             if (str(ans).lower() == str(code).lower()):
                 player = get_object_or_404(Player, user=request.user)
-                player.level2 = 0
+                player.level2 = -1
                 player.save()
                 question_level = player.question_level
                 if ((question_level) - 1 > 0):
@@ -189,7 +210,7 @@ def Passcode(request):
                 # print(player.level2)
                 q = StageTwo.objects.all()
                 player = get_object_or_404(Player, user=request.user)
-                return render(request, "quiz/index.html", {"q": q, "player": player})
+                return render(request, "quiz/wait.html", {"q": q, "player": player})
             else:
                 check = True
                 formp = UserAnswer
@@ -202,8 +223,10 @@ def Passcode(request):
 @login_required(login_url='/login', redirect_field_name=None)
 def Individual(request, qid):
     player = get_object_or_404(Player, user=request.user)
-    if(player.level2 < 0):
+    if(player.level2 < -1):
         return render(request, 'quiz/smart.html')
+    elif(player.level2 == -1):
+        return render(request, 'quiz/wait.html')
     else:
         # this marks if the question is solved (and shows the popup)
         value = False

@@ -12,7 +12,14 @@ class Stage_1(models.Model):
     image_url = models.URLField(blank=True)
     hint = models.TextField(blank=True, default='hint')
     answer = models.CharField(blank=True, max_length=400)
-    algo = models.TextField(blank=True)
+    algo = models.TextField(blank=True, default=""" 
+    <pre>
+    <code>
+
+    </code>
+    </pre>
+    """
+                            )
 
     def __str__(self):
         return str(str(self.level)+str(" . ")+str(self.title))

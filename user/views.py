@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.contrib.auth.decorators import login_required
 from .import models
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from .forms import UserDetails
 # from django.contrib.auth.models import User
 
@@ -29,6 +29,7 @@ def dashboard(request):
     return render(request, 'user/dashboard.html', {'player': player, "rank": j})
 
 
+@login_required(login_url='/login', redirect_field_name=None)
 def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == 'google-oauth2':
         profile = user
@@ -72,6 +73,7 @@ def privacy_policy_fb(request):
 
 
 # @login_required(login_url='logout/')
+@login_required(login_url='/login', redirect_field_name=None)
 def UserData(request):
     my_form = UserDetails()
     context = {
@@ -80,6 +82,7 @@ def UserData(request):
     return render(request, "user/details.html", context)
 
 
+@login_required(login_url='/login', redirect_field_name=None)
 def Formdata(request):
     if request.method == "POST":
         my_form = UserDetails(request.POST)

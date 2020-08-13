@@ -91,14 +91,14 @@ pre {
   padding: 1em;
 }
 
-@media only screen and (min-width: 700px){
-    .content{
-        flex-direction: row;
-        align-items: center;
-    }
+@media only screen and (min-width: 700px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+  }
 
-    .content .blocks{
-        max-width: 48%;
-        padding: 1rem;
-    }
+  .content .blocks {
+    max-width: 48%;
+    padding: 1rem;
+  }
 }
