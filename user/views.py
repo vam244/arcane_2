@@ -19,7 +19,7 @@ def dashboard(request):
     player = models.Player.objects.get(user=request.user)
     print("In dashboard - Name - {}  User - {}".format(player.name, player.user))
     cl = models.Player.objects.order_by(
-        '-score', '-last_submit')
+        '-score', 'last_submit')
     j = 0
     for i in cl:
         j += 1
@@ -61,9 +61,9 @@ def save_profile(backend, user, response, *args, **kwargs):
 def leaderboard(request):
     global current_leaderboard
     current_leaderboard = models.Player.objects.order_by(
-        '-score', '-last_submit')
+        '-score', 'last_submit')
     leader = models.Player.objects.order_by(
-        '-score', '-last_submit')[:1]
+        '-score', 'last_submit')[:1]
     n = models.Player.objects.count()
     return render(request, 'user/leaderboard.html', {'leaderboard': current_leaderboard, 'leader': leader, 'n': n})
 
