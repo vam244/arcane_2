@@ -32,7 +32,7 @@ def Algo(request):
 @login_required(login_url='/login', redirect_field_name=None)
 def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
-    now = datetime.now()
+    now = datetime.utcnow()+timedelta(hours=5.5)
     quiz = datetime(2020, 8, 22, 10, 0, 0)       # Set the Date Time Here
     end = datetime(2020, 8, 23, 10, 0, 0)
 
