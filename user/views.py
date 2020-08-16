@@ -72,7 +72,6 @@ def privacy_policy_fb(request):
     return render(request, "user/privacypolicy.html")
 
 
-# @login_required(login_url='logout/')
 @login_required(login_url='/login', redirect_field_name=None)
 def UserData(request):
     my_form = UserDetails()
@@ -82,7 +81,7 @@ def UserData(request):
     return render(request, "user/details.html", context)
 
 
-#@login_required(login_url='/login', redirect_field_name=None)
+@login_required(login_url='/login', redirect_field_name=None)
 def Formdata(request):
     if request.method == "POST":
         my_form = UserDetails(request.POST)
