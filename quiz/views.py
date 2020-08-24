@@ -28,6 +28,14 @@ def Algo(request):
     else:
         raise Http404("Page does not exist")
 
+@login_required(login_url='/login', redirect_field_name=None)
+def showanswer(request,pk):
+    question = get_object_or_404(Stage_1, pk=pk)
+    player = get_object_or_404(Player, user=request.user)
+    if player.question_level > Stage_1.objects.count():
+        return render(request, 'quiz/answerdisplay.html',{'question':question})
+    else:
+        raise Http404("Page does not exist")
 
 @login_required(login_url='/login', redirect_field_name=None)
 def StageOne(request):
