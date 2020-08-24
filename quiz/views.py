@@ -42,7 +42,7 @@ def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
     now = datetime.utcnow()+timedelta(hours=5.5)
     quiz = datetime(2020, 8, 16, 18, 0, 0)       # Set the Date Time Here
-    end = datetime(2020, 8, 23, 10, 0, 0)
+    end = datetime(2020, 8, 29, 10, 0, 0)
 
     print(now)
     if now < quiz:
