@@ -6,14 +6,33 @@
       background: black;
       color: blanchedalmond;
     }
-    .content {
-      pointer-events: none;
-      cursor: not-allowed;
+    .question_container{
+      width: 100%;
+    }
+    .display{
+      border: 1px solid #aeaeae;
+    }
+    .header_block{
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    .width_margin{
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+    .flex_container{
+      display: flex;
       flex-direction: column;
     }
-    .htit {
-      margin-top: 1em;
-      margin-bottom: 1em;
+    .content_body {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 1rem;
     }
     .question {
       background: rgba(255, 2555, 255, 0.1);
@@ -23,56 +42,34 @@
     }
     .title {
       color: burlywood;
+      font-size: 1.1em;
+
     }
   </style>
 
   {% block title %}
-  <title>Algorithms 📕</title>
+  <title>Algorithms</title>
   {% endblock %}
 </head>
-<div class="content">
-  <h2 align="center" class="htit">
+<div class="content_body">
+  <h2 align="center" class="header_block">
     The Algorithms to fetch the Passcode are
   </h2>
 
-  {% for question in questions %}
-  <div class="stage1">
-    <div class="context">
-      <ul>
-        <li>Question Level : {{ question.level}}</li>
-
-        <li class="title">
-          Question Title : {{ question.title }}
-        </li>
-
-        <li>
-          <p class="question">
-            {{question.description}}
-          </p>
-          <br />
-        </li>
-
-        <li>
-          <p>Algorithm :</p>
-          <p>
-            {{ question.algo|safe}}
-          </p>
-        </li>
-
-        <li>
-          <p class="question">
-            In case you forgot
-            <br />
-            Answer : <font color="#a26d2"> {{question.answer}}</font>
-          </p>
-        </li>
-        <br />
-      </ul>
+  
+    <div class="question_container flex_container">
+      {% for question in questions %}
+        <div class="width_margin display">
+          <p style="white-space: nowrap;"><h3 class="title">{{ question.level}}. {{ question.title }}</h3></p>
+          <p>{{ question.description}}</p>
+          <br>
+          <button class="btn" style="margin:0 auto;"><a href="{% url 'quiz:showanswer' question.id %}" >Check Answer</a></button>
+        </div>
+      {% endfor %}
     </div>
-  </div>
-  <br />
+  
 
-  {% endfor %}
+  
 </div>
 
 {% endblock %}
