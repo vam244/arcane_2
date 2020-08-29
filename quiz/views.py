@@ -204,7 +204,7 @@ def Passcode(request):
             if (str(ans).lower() == str(code).lower()):
                 player = get_object_or_404(Player, user=request.user)
                 player.level2 = -1
-                player.score += 50
+                player.score += 60
                 player.save()
                 question_level = player.question_level
                 if ((question_level) - 1 > 0):
