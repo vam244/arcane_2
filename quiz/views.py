@@ -43,12 +43,16 @@ def StageOne(request):
     now = datetime.utcnow()+timedelta(hours=5.5)
     quiz = datetime(2020, 8, 16, 18, 0, 0)       # Set the Date Time Here
     end = datetime(2020, 8, 30, 23, 0, 0)
+    firstend = datetime(2020, 8, 30, 15, 0, 0)
 
     print(now)
     if now < quiz:
         print('not time ' + str(quiz))
         return render(request, 'quiz/timer.html')
-
+    
+    if firstend<now and player.level2 < 0:
+        return render(request, 'quiz/wait.html')
+    
     if (now > end):
         print('end ' + str(end))
         return render(request, 'quiz/timer.html', {"end": end})
