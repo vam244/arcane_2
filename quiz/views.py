@@ -41,7 +41,7 @@ def showanswer(request,pk):
 def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
     now = datetime.utcnow()+timedelta(hours=5.5)
-    quiz = datetime(2020, 8, 16, 18, 0, 0)       # Set the Date Time Here
+    quiz = datetime(2020, 8, 30, 9, 0, 0)       # Set the Date Time Here
     end = datetime(2020, 8, 30, 23, 0, 0)
     firstend = datetime(2020, 8, 30, 15, 0, 0)
 
