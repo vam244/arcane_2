@@ -24,6 +24,47 @@
     .title {
       color: burlywood;
     }
+    code{
+      white-space: pre;
+    }
+    pre{
+      color: #fff !important;
+    }
+    .algorithms{
+
+        white-space: pre;
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 1em;
+        padding: 1rem;
+        
+    }
+    .algorithms code{
+      color: #fff;
+
+    }
+    @media only screen and (max-width: 480px){
+      code{
+        font-size: 0.8em;
+        white-space: pre;
+        text-align: left;
+        overflow-x: scroll;
+      }
+      .algorithms{
+        font-size: 0.46em;
+        white-space: pre;
+        text-align: left;
+        overflow-x: scroll;
+      }
+
+    }
+    @media only screen and (max-width: 290px){
+      .algorithms{
+        font-size: 0.4em;
+        white-space: pre;
+        text-align: left;
+      } 
+    }
   </style>
   {% block title %}
     <title>Question Answer</title>
@@ -50,7 +91,7 @@
 
         <li style="color: #fff;">
           <p>Algorithm :</p>
-          <p style="color: #fff;">
+          <p class="algorithm" style="color: #fff;">
             {{ question.algo|safe}}
           </p>
         </li>
