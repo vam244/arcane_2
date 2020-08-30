@@ -36,4 +36,9 @@ def page(request):
     # print(n)
     leaders = Player.objects.order_by(
         '-score', 'last_submit')[:n]
+    j = 1
+    for i in leaders:
+        i.rank = j
+        j += 1
+        i.save()
     return render(request, 'home/page.html', {"n": n, "leaders": leaders})
