@@ -4,4 +4,4 @@ from django.db import models
 
 
 class Leaders(models.Model):
-    playerNum = models.IntegerField(default=40)
+    playerNum = models.IntegerField(default=10)
