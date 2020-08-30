@@ -1,1 +1,38 @@
-{{n }}
+<style>
+  table,
+  td,
+  th {
+    border: 1px solid black;
+  }
+</style>
+
+The top {{n }} qualified participants are
+<div class="box">
+  <table>
+    <tr>
+      <th>
+        Rank
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Score
+      </th>
+    </tr>
+
+    {% for player in leaders %}
+    <tr>
+      <td>
+        {{player.rank}}
+      </td>
+      <td>
+        {{player.name }}
+      </td>
+      <td>
+        {{player.score}}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>

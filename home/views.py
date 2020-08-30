@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from .models import Leaders
+from user.models import Player
 # Create your views here.
 
 
@@ -32,5 +33,7 @@ def rules(request):
 def page(request):
     p = get_object_or_404(Leaders, pk=1)
     n = p.playerNum
-    print(n)
-    return render(request, 'home/page.html', {"n": n})
+    # print(n)
+    leaders = Player.objects.order_by(
+        '-score', 'last_submit')[:n]
+    return render(request, 'home/page.html', {"n": n, "leaders": leaders})
