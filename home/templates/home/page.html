@@ -18,7 +18,7 @@
   table,
   td,
   th {
-    border: 1px solid white;
+    border: 0.8px solid white;
     color: white;
   }
 
@@ -32,9 +32,13 @@
   td {
     padding: 1em;
   }
+
+  div {
+    text-align: center;
+  }
 </style>
 
-<h3>The top {{n }} qualified participants are</h3>
+<h2>The top {{n }} qualified participants are</h2>
 <div class="content1">
   <br />
   <div class="table">
@@ -53,6 +57,30 @@
       </tr>
       {% endfor %}
     </table>
+  </div>
+
+  <form action="" method="POST" class="stage1">
+    To Promote the players to next level
+    <br />
+    Enter the password below
+    <br />
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+
+  <br />
+
+  <div class="check">
+    {% if lst == 0 %}
+    <p>
+      Please Be sure before entering, <br />
+      There is no going back
+    </p>
+    {% endif %} {% if lst == 1 %}
+    <p>Players promoted</p>
+    {% endif %} {% if lst == 2 %}
+    <p>wrong password</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
