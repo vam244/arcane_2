@@ -54,5 +54,27 @@
       {% endfor %}
     </table>
   </div>
+
+  <form action="" method="POST" class="stage1">
+    To Promote the players to next level
+    <br />
+    Enter the password below
+    <br />
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+
+  <div class="check">
+    {% if lst == 0 %}
+    <p>
+      Please Be sure before entering, <br />
+      There is no going back
+    </p>
+    {% endif %} {% if lst == 1 %}
+    <p>Players promoted</p>
+    {% endif %} {% if lst == 2 %}
+    <p>password wrong</p>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}
