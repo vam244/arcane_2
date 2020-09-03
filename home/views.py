@@ -55,7 +55,7 @@ def page(request):
 
         if my_form.is_valid():
             ans = my_form.cleaned_data.get("answer")
-            organs = "SayanMondal"
+            organs = "AlohaMoraHarryPotter"
 
             # correct answer
             if (str(organs) == str(ans)):   # if the answer is correct
