@@ -32,6 +32,10 @@
   td {
     padding: 1em;
   }
+
+  div {
+    text-align: center;
+  }
 </style>
 
 <h2>The top {{n }} qualified participants are</h2>
@@ -64,6 +68,8 @@
     <button type="submit" class="btn">Submit</button>
   </form>
 
+  <br />
+
   <div class="check">
     {% if lst == 0 %}
     <p>
@@ -73,7 +79,7 @@
     {% endif %} {% if lst == 1 %}
     <p>Players promoted</p>
     {% endif %} {% if lst == 2 %}
-    <p>password wrong</p>
+    <p>wrong password</p>
     {% endif %}
   </div>
 </div>
