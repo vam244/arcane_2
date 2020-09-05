@@ -4,7 +4,7 @@
     color: #d99236;
   }
   .container {
-    background: radial-gradient(circle at 120% 50%,#d99236,black 70%);
+    background: radial-gradient(circle at 120% 50%, #d99236, black 70%);
   }
 
   .content {
@@ -28,23 +28,22 @@
     align-items: center;
     /* background-color: blanchedalmond; */
   }
-  #countdownblock .cntdwn{
+  #countdownblock .cntdwn {
     text-align: center;
     padding: 1rem;
-
   }
-  #countdownblock .cntdwn .text{
+  #countdownblock .cntdwn .text {
     font-size: 0.5em;
   }
 
-  .timeexp{
+  .timeexp {
     display: none !important;
   }
-  #endinfo{
+  #endinfo {
     display: none;
     padding: 0.5em;
   }
-  .quizstatusdone{
+  .quizstatusdone {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 1em;
     margin: 0.5em;
@@ -57,13 +56,13 @@
     display: flex;
     align-items: center;
   }
-  @media only screen and (max-width: 700px){
-    #countdownblock{
+  @media only screen and (max-width: 700px) {
+    #countdownblock {
       font-size: 1em;
     }
   }
-  @media only screen and (max-width: 300px){
-    #countdownblock{
+  @media only screen and (max-width: 300px) {
+    #countdownblock {
       font-size: 0.6em;
     }
   }
@@ -71,34 +70,39 @@
 
 <div class="content">
   {% if end %}
-  <p class="quizstatusdone">
-    Quiz Expired on {{end}}
-  </p>
+  <p class="quizstatusdone">Quiz Expired on {{end}}</p>
   {% else %}
-  <h2 class="quizstatus">
-    Quiz Live On
-  </h2>
-
+  <h2 class="quizstatus">Quiz Live On</h2>
 
   <div id="countdownblock" class="">
-    
-    <div class="cntdwn"><p id="days"></p><p class="text">days</p></div>
+    <div class="cntdwn">
+      <p id="days"></p>
+      <p class="text">days</p>
+    </div>
     <p>:</p>
-    <div class="cntdwn"><p id="hours"></p><p class="text">hours</p></div>
+    <div class="cntdwn">
+      <p id="hours"></p>
+      <p class="text">hours</p>
+    </div>
     <p>:</p>
-    <div class="cntdwn"><p id="mins"></p><p class="text">minutes</p></div>
+    <div class="cntdwn">
+      <p id="mins"></p>
+      <p class="text">minutes</p>
+    </div>
     <p>:</p>
-    <div class="cntdwn"><p id="seconds"></p><p  class="text">seconds</p></div>
+    <div class="cntdwn">
+      <p id="seconds"></p>
+      <p class="text">seconds</p>
+    </div>
   </div>
   <button id="endinfo" class="btn"></button>
   {% endif %}
 </div>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   // Set the date we're counting down to
-  var countDownDate = new Date("Aug 30, 2020 9:00:00").getTime();
+  var countDownDate = new Date("Sep 12, 2020 9:00:00").getTime();
 
   // Update the count down every 1 second
   var x = setInterval(function () {
@@ -116,24 +120,21 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
-    document.getElementById("days").innerHTML = days
-    document.getElementById("hours").innerHTML = hours
-    document.getElementById("mins").innerHTML = minutes
-    document.getElementById("seconds").innerHTML = seconds
-
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("mins").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
 
     // If the count down is over, go back to home
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("endinfo").innerHTML = "<p style='font-size: 0.4em'><a href='{% url 'home:home' %}'>Go back to home</a></p>";
-      document.getElementById("countdownblock").innerHTML  = "";
-      $("#countdownblock").addClass('timeexp');
-      $("#endinfo").css('display','block');
+      document.getElementById("endinfo").innerHTML =
+        "<p style='font-size: 0.4em'><a href='{% url 'home:home' %}'>Go back to home</a></p>";
+      document.getElementById("countdownblock").innerHTML = "";
+      $("#countdownblock").addClass("timeexp");
+      $("#endinfo").css("display", "block");
     }
   });
-
-
 </script>
 
 {% endblock %}
