@@ -28,31 +28,33 @@ def Algo(request):
     else:
         raise Http404("Page does not exist")
 
+
 @login_required(login_url='/login', redirect_field_name=None)
-def showanswer(request,pk):
+def showanswer(request, pk):
     question = get_object_or_404(Stage_1, pk=pk)
     player = get_object_or_404(Player, user=request.user)
     if player.question_level > Stage_1.objects.count():
-        return render(request, 'quiz/answerdisplay.html',{'question':question})
+        return render(request, 'quiz/answerdisplay.html', {'question': question})
     else:
         raise Http404("Page does not exist")
+
 
 @login_required(login_url='/login', redirect_field_name=None)
 def StageOne(request):
     player = get_object_or_404(Player, user=request.user)
     now = datetime.utcnow()+timedelta(hours=5.5)
-    quiz = datetime(2020, 8, 30, 9, 0, 0)       # Set the Date Time Here
-    end = datetime(2020, 8, 30, 23, 0, 0)
-    firstend = datetime(2020, 8, 30, 15, 0, 0)
+    quiz = datetime(2020, 9, 12, 9, 0, 0)       # Set the Date Time Here
+    end = datetime(2020, 9, 13, 23, 0, 0)
+    firstend = datetime(2020, 9, 12, 23, 0, 0)
 
     print(now)
     if now < quiz:
         print('not time ' + str(quiz))
         return render(request, 'quiz/timer.html')
-    
-    if firstend<now and player.level2 < 0:
+
+    if firstend < now and player.level2 < 0:
         return render(request, 'quiz/wait.html')
-    
+
     if (now > end):
         print('end ' + str(end))
         return render(request, 'quiz/timer.html', {"end": end})
