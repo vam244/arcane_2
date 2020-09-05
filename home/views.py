@@ -36,14 +36,14 @@ def rules(request):
 def page(request):
     p = get_object_or_404(Leaders, pk=1)
     n = p.playerNum
-    leaders = Player.objects.order_by(
-        '-score', 'last_submit')[:n]
     lst = [0, 1, 2]
     form = UserAnswer
 
     if request.method == 'GET':
         # print(n)
         j = 1
+        leaders = Player.objects.order_by(
+            '-score', 'last_submit')[:n]
         for i in leaders:
             i.rank = j
             j += 1
@@ -59,10 +59,13 @@ def page(request):
 
             # correct answer
             if (str(organs) == str(ans)):   # if the answer is correct
-                for i in leaders:
-                    i.level2 = 0
-                    i.save()
-                    return render(request, 'home/page.html', {"n": n, "leaders": leaders, "form": form, "lst": lst[1]})
+                leaders = Player.objects.order_by(
+                    '-score', 'last_submit')[:n]
+                for x in leaders:
+                    x.level2 = 0
+                    x.save()
+                    print(x.name)
+                return render(request, 'home/page.html', {"n": n, "leaders": leaders, "form": form, "lst": lst[1]})
 
             # incorrect answer
             else:   # returns the same page
