@@ -7,57 +7,55 @@
   {% endblock %}
   <style type="text/css">
     #countdownblock {
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 1em;
-    margin: 0.5em;
-    max-width: 80vw;
-    border-radius: 1em;
-    margin-top: 1em;
-    box-shadow: 0px 2px 8px 2px #d99236;
-    color: white;
-    font-size: 2em;
-    display: flex;
-    align-items: center;
-    /* background-color: blanchedalmond; */
-  }
-  #countdownblock .cntdwn{
-    text-align: center;
-    padding: 1rem;
-
-  }
-  #countdownblock .cntdwn .text{
-    font-size: 0.5em;
-  }
-  @media only screen and (max-width: 700px){
-    #countdownblock{
-      font-size: 1em;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 1em;
+      margin: 0.5em;
+      max-width: 80vw;
+      border-radius: 1em;
+      margin-top: 1em;
+      box-shadow: 0px 2px 8px 2px #d99236;
+      color: white;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      /* background-color: blanchedalmond; */
     }
-  }
-  @media only screen and (max-width: 300px){
-    #countdownblock{
-      font-size: 0.6em;
+    #countdownblock .cntdwn {
+      text-align: center;
+      padding: 1rem;
     }
-  }
+    #countdownblock .cntdwn .text {
+      font-size: 0.5em;
+    }
+    @media only screen and (max-width: 700px) {
+      #countdownblock {
+        font-size: 1em;
+      }
+    }
+    @media only screen and (max-width: 300px) {
+      #countdownblock {
+        font-size: 0.6em;
+      }
+    }
   </style>
 </head>
 <div class="content">
   <div class="stage1">
-     <h3 style="font-size: 0.7em;">
-            Question No. {{question.level}}
-     </h3>
-     {% if value %}
-        <div class="wrong">
-            Wrong Answer
-            <br /> Try Again <br />
-        </div>
-     {% endif %}
-     <h3>
-            <u style="text-decoration: none; color: #d99236; font-size: 1.2em;">
-                {{ question.title }}
-            </u>
-     </h3>
+    <h3 style="font-size: 0.7em">Question No. {{question.level}}</h3>
+    {% if value %}
+    <div class="wrong">
+      Wrong Answer
+      <br />
+      Try Again <br />
+    </div>
+    {% endif %}
+    <h3>
+      <u style="text-decoration: none; color: #d99236; font-size: 1.2em">
+        {{ question.title }}
+      </u>
+    </h3>
 
-     <br />
+    <br />
     <!-- description -->
     {% if question.description %}
     <div>{{ question.description }}</div>
@@ -67,28 +65,35 @@
 
   <form action="" method="POST" class="stage1">
     {% csrf_token %} {{form.as_p}}
-    <button type="submit" class="btn">
-      Submit
-    </button>
+    <button type="submit" class="btn">Submit</button>
   </form>
 </div>
- <div id="countdownblock" class="">
-    
-    <div class="cntdwn"><p id="days"></p><p class="text">days</p></div>
-    <p>:</p>
-    <div class="cntdwn"><p id="hours"></p><p class="text">hours</p></div>
-    <p>:</p>
-    <div class="cntdwn"><p id="mins"></p><p class="text">minutes</p></div>
-    <p>:</p>
-    <div class="cntdwn"><p id="seconds"></p><p  class="text">seconds</p></div>
+<div id="countdownblock" class="">
+  <div class="cntdwn">
+    <p id="days"></p>
+    <p class="text">days</p>
   </div>
-
-
+  <p>:</p>
+  <div class="cntdwn">
+    <p id="hours"></p>
+    <p class="text">hours</p>
+  </div>
+  <p>:</p>
+  <div class="cntdwn">
+    <p id="mins"></p>
+    <p class="text">minutes</p>
+  </div>
+  <p>:</p>
+  <div class="cntdwn">
+    <p id="seconds"></p>
+    <p class="text">seconds</p>
+  </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   // Set the date we're counting down to
-  var countDownDate = new Date("Aug 30, 2020 16:00:00").getTime();
+  var countDownDate = new Date("Sep 13, 2020 9:00:00").getTime();
 
   // Update the count down every 1 second
   var x = setInterval(function () {
@@ -106,31 +111,22 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
-    document.getElementById("days").innerHTML = days
-    document.getElementById("hours").innerHTML = hours
-    document.getElementById("mins").innerHTML = minutes
-    document.getElementById("seconds").innerHTML = seconds
-
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("mins").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
 
     // If the count down is over, go back to home
     if (distance < 0) {
       clearInterval(x);
-      
-      
-      document.getElementById("countdownblock").innerHTML  = "";
-      $("#countdownblock").css("display","none");
-      $(".content").css("display","block");
-      
-    }
-    else{
-       
-      $("#countdownblock").css("display","flex");
-      $(".content").css("display","none");
 
+      document.getElementById("countdownblock").innerHTML = "";
+      $("#countdownblock").css("display", "none");
+      $(".content").css("display", "block");
+    } else {
+      $("#countdownblock").css("display", "flex");
+      $(".content").css("display", "none");
     }
   });
-
-
 </script>
 {% endblock %}
