@@ -60,11 +60,11 @@ def save_profile(backend, user, response, *args, **kwargs):
 @login_required(login_url='/login', redirect_field_name=None)
 def leaderboard(request):
     global current_leaderboard
-    current_leaderboard = models.Player.objects.order_by(
+    current_leaderboard = models.Player.objects.filter(level2__gte=0).order_by(
         '-score', 'last_submit')
-    leader = models.Player.objects.order_by(
+    leader = models.Player.objects.filter(level2__gte=0).order_by(
         '-score', 'last_submit')[:1]
-    n = models.Player.objects.count()
+    n = models.Player.objects.filter(level2__gte=0).count()
     return render(request, 'user/leaderboard.html', {'leaderboard': current_leaderboard, 'leader': leader, 'n': n})
 
 
