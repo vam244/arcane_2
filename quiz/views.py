@@ -45,7 +45,7 @@ def StageOne(request):
     now = datetime.utcnow()+timedelta(hours=5.5)
     quiz = datetime(2020, 9, 12, 9, 0, 0)       # Set the Date Time Here
     end = datetime(2020, 9, 13, 23, 0, 0)
-    firstend = datetime(2020, 9, 12, 23, 0, 0)
+    firstend = datetime(2020, 9, 13, 2, 0, 0)
 
     print(now)
     if now < quiz:
