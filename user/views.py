@@ -18,7 +18,7 @@ def logout(request):
 def dashboard(request):
     player = models.Player.objects.get(user=request.user)
     print("In dashboard - Name - {}  User - {}".format(player.name, player.user))
-    cl = models.Player.objects.order_by(
+    cl = models.Player.objects.filter(level2__gte=0).order_by(
         '-score', 'last_submit')
     j = 0
     for i in cl:
@@ -26,6 +26,8 @@ def dashboard(request):
         if i.user == player.user:
             print(j)
             break
+    if player.level2 < 0:
+        j = 0
     return render(request, 'user/dashboard.html', {'player': player, "rank": j})
 
 
