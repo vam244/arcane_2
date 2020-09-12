@@ -63,6 +63,7 @@ def page(request):
                     '-score', 'last_submit')[:n]
                 for x in leaders:
                     x.level2 = 0
+                    x.score = 0
                     x.save()
                     print(x.name)
                 return render(request, 'home/page.html', {"n": n, "leaders": leaders, "form": form, "lst": lst[1]})
