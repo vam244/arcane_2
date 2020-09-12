@@ -24,10 +24,15 @@
         <p>{{ player.score }}</p>
         <p>Score</p>
       </div>
-<!--       <div class="rank" style="font-size: medium;">
-        <p>{{rank}}</p>
-        <p>Rank</p>
-      </div> -->
+     <div class="rank" style="font-size: medium;">
+        {% if rank != 0 %}
+           <p>{{rank}}</p>
+           <p>Rank</p>
+        {% else %}
+           <p>NQ</p>
+           <p>Rank</p>
+       {% endif %}
+      </div>
     </div>
 
     <form action="{% url 'quiz:stageone' %}" method="POST">
