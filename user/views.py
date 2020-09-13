@@ -63,7 +63,7 @@ def save_profile(backend, user, response, *args, **kwargs):
 def leaderboard(request):
     global current_leaderboard
     current_leaderboard = models.Player.objects.filter(level2__gte=0).order_by(
-        '-score', 'last_submit')
+        '-score', 'last_submit')[:3]
     leader = models.Player.objects.filter(level2__gte=0).order_by(
         '-score', 'last_submit')[:1]
     n = models.Player.objects.filter(level2__gte=0).count()
