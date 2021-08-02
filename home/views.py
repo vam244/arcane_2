@@ -34,6 +34,7 @@ def rules(request):
 
 
 def page(request):
+    "Only After 1st Round is complete"
     p = get_object_or_404(Leaders, pk=1)
     n = p.playerNum
     lst = [0, 1, 2]
