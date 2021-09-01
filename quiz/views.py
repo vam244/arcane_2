@@ -41,19 +41,26 @@ def showanswer(request, pk):
 
 @login_required(login_url='/login', redirect_field_name=None)
 def StageOne(request):
+    ''' Set the date time as class datetime.datetime
+    (year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None, *, fold=0)'''
+
     player = get_object_or_404(Player, user=request.user)
     now = datetime.utcnow()+timedelta(hours=5.5)
-    quiz = datetime(2020, 9, 12, 9, 0, 0)       # Set the Date Time Here
-    end = datetime(2020, 9, 13, 23, 0, 0)
-    firstend = datetime(2020, 9, 13, 2, 0, 0)
+
+    
+
+
+    quiz = datetime(2021, 8, 2, 9, 0, 0)       # Set the Date Time Here
+    end = datetime(2021, 9, 2, 23, 0, 0)
+    # firstend = datetime(2021, 8, 3, 2, 0, 0)
 
     print(now)
     if now < quiz:
         print('not time ' + str(quiz))
         return render(request, 'quiz/timer.html')
 
-    if firstend < now and player.level2 < 0:
-        return render(request, 'quiz/wait.html')
+    # if firstend < now and player.level2 < 0:
+    #     return render(request, 'quiz/wait.html')
 
     if (now > end):
         print('end ' + str(end))

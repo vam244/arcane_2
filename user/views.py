@@ -18,16 +18,32 @@ def logout(request):
 def dashboard(request):
     player = models.Player.objects.get(user=request.user)
     print("In dashboard - Name - {}  User - {}".format(player.name, player.user))
-    cl = models.Player.objects.filter(level2__gte=0).order_by(
+    cl = models.Player.objects.order_by(
         '-score', 'last_submit')
     j = 0
+
+    # code for calaculating the dyanmic rank 
+    # cl gives the scores in descending order 
+    # we store the rank in j
+    # variable naming is very bad XD
+
     for i in cl:
         j += 1
         if i.user == player.user:
             print(j)
             break
-    if player.level2 < 0:
-        j = 0
+
+
+    # cl = models.Player.objects.filter(level2__gte=0).order_by(
+    #     '-score', 'last_submit')
+    # j = 0
+    # for i in cl:
+    #     j += 1
+    #     if i.user == player.user:
+    #         print(j)
+    #         break
+    # if player.level2 < 0:
+    #     j = 0
     return render(request, 'user/dashboard.html', {'player': player, "rank": j})
 
 
@@ -62,11 +78,20 @@ def save_profile(backend, user, response, *args, **kwargs):
 @login_required(login_url='/login', redirect_field_name=None)
 def leaderboard(request):
     global current_leaderboard
-    current_leaderboard = models.Player.objects.filter(level2__gte=0).order_by(
-        '-score', 'last_submit')[:3]
-    leader = models.Player.objects.filter(level2__gte=0).order_by(
+
+    current_leaderboard = models.Player.objects.order_by(
+        '-score', 'last_submit')
+
+    leader = models.Player.objects.order_by(
         '-score', 'last_submit')[:1]
-    n = models.Player.objects.filter(level2__gte=0).count()
+    n = models.Player.objects.count()
+
+    # uncomment when 2nd round in play
+    # current_leaderboard = models.Player.objects.filter(level2__gte=0).order_by(
+    #     '-score', 'last_submit')[:3]
+    # leader = models.Player.objects.filter(level2__gte=0).order_by(
+    #     '-score', 'last_submit')[:1]
+    # n = models.Player.objects.filter(level2__gte=0).count()
     return render(request, 'user/leaderboard.html', {'leaderboard': current_leaderboard, 'leader': leader, 'n': n})
 
 
