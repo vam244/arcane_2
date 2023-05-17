@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import dj_database_url
+# import dj_database_url
 import os
-import django_heroku
-import psycopg2
+# import django_heroku
+# import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +28,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://qriosity2.herokuapp.com/','http://qriosity2.ieeesbnitdgp.com/','https://qriosity2-0.herokuapp.com/','https://arc-2-1-nce1.vercel.app/']
+ALLOWED_HOSTS = ['https://qriosity2.herokuapp.com/','http://qriosity2.ieeesbnitdgp.com/','https://qriosity2-0.herokuapp.com/','.vercel.app','.now.sh']
 
 
 # Application definition
@@ -189,3 +189,6 @@ except ImportError:
     print("You are in production mode now...")
 
 django_heroku.settings(locals())
+#ADDED CODE BELOW FOR VERCEL DEPLOYMENT
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
