@@ -1,7 +1,7 @@
-import dj_database_url
+# import dj_database_url
 import os
-import django_heroku
-import psycopg2
+# import django_heroku
+# import psycopg2
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')b5l7*7kx72g!%0d)sy*@zx+7q(t_4uohqc4wy6vhwycs@w#2r'
@@ -117,4 +117,4 @@ DATABASES = {
 }
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

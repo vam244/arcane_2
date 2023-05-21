@@ -1,5 +1,5 @@
 from django.urls import path
-from django.conf.urls import url,include
+# from django.conf.urls import url,include
 from . import views
 
 app_name = 'quiz'
@@ -14,5 +14,5 @@ urlpatterns = [
     path('passcode/', views.Passcode, name="passcode"),
     path('algo/', views.Algo, name="algo"),
     
-    url(r'^algo/questions/(?P<pk>.*)/$',views.showanswer,name='showanswer'),
+    # url(r'^algo/questions/(?P<pk>.*)/$',views.showanswer,name='showanswer'),
 ]

@@ -28,7 +28,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://qriosity2.herokuapp.com/','http://qriosity2.ieeesbnitdgp.com/','https://qriosity2-0.herokuapp.com/','.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['https://qriosity2.herokuapp.com/','http://qriosity2.ieeesbnitdgp.com/','https://qriosity2-0.herokuapp.com/']
 
 
 # Application definition
@@ -132,7 +132,7 @@ WSGI_APPLICATION = 'Qriosity.wsgi.application'
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 DATABASES = {}
 
@@ -180,15 +180,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(
+    # conn_max_age=600, ssl_require=True)
 
-try:
-    from .local_settings import *
-except ImportError:
-    print("You are in production mode now...")
+# try:
+    # from .local_settings import *
+# except ImportError:
+    # print("You are in production mode now...")
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 #ADDED CODE BELOW FOR VERCEL DEPLOYMENT
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
