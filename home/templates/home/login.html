@@ -46,6 +46,19 @@
       <!--<a href="{% url 'social:begin' 'facebook' %}">
         <font class="login-medium"><i class="fab fa-facebook"></i> <span>login using facebook</span></font>
       </a>-->
+      <div class="stage1">
+        
+        <form action="{% url 'quiz:passcode' %}" method="POST">
+          {% csrf_token %}
+          <h1>
+            Please enter your registration number
+          </h1>
+        <input type="text"></input>
+        <button class="btn btn-primary mb1 bg-blue" type="submit">
+          Submit
+        </button>
+        </form>
+      </div>
       <a href="{% url 'social:begin' 'google-oauth2' %}">
         <font class="google-login"> 
           <div class="icon_wrapper"><img src="{% static 'home/Google_Logo.svg' %}"></div>

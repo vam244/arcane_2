@@ -23,7 +23,8 @@ class Player(models.Model):
 
 class PlayerDetails(models.Model):
     user_name = models.OneToOneField(
-        Player, on_delete=models.CASCADE, primary_key=True)
+     Player, on_delete=models.CASCADE, primary_key=True)
+    regno=models.CharField(blank=True, max_length=4000)
     full_name = models.CharField(default="your name", max_length=400)
     college = models.CharField(default="none", max_length=400)
     year = models.CharField(default="1", max_length=10)
@@ -43,3 +44,5 @@ class StageOneHint(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     level = models.IntegerField(default=0, blank=True)
     taken = models.BooleanField(default=False)
+
+
